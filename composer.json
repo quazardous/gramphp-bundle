@@ -39,13 +39,6 @@
     "suggest": {
         "doctrine/orm": "so that the gramphp tables join the ORM schema: doctrine:schema:update and doctrine:migrations:diff see them"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/quazardous/gramphp",
-            "no-api": true
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Quazardous\\GramPHPBundle\\": "src/"
