@@ -6,6 +6,10 @@ follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-03
+
+The first release, over gramphp 0.1.
+
 ### Added
 
 - Graphs declared in configuration — a file in grampy's format, or the same
@@ -23,3 +27,6 @@ follows [Semantic Versioning](https://semver.org/).
 - `gramphp:diagram`: a graph as Mermaid, a Mermaid state diagram or
   Graphviz, with live counts.
 - Symfony 6.4, 7 and 8; DoctrineBundle 2 and 3.
+
+[Unreleased]: https://github.com/quazardous/gramphp-bundle/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/quazardous/gramphp-bundle/releases/tag/v0.1.0

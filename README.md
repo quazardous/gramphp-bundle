@@ -1,6 +1,7 @@
 # gramphp-bundle
 
 [![CI](https://github.com/quazardous/gramphp-bundle/actions/workflows/ci.yml/badge.svg)](https://github.com/quazardous/gramphp-bundle/actions/workflows/ci.yml)
+[![Packagist](https://img.shields.io/packagist/v/quazardous/gramphp-bundle)](https://packagist.org/packages/quazardous/gramphp-bundle)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 The Symfony integration of [gramphp](https://github.com/quazardous/gramphp) —
