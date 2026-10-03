@@ -1,0 +1,6 @@
+/vendor/
+/var/
+/.phpunit.cache/
+/.php-cs-fixer.cache
+/composer.lock
+CLAUDE.local.md

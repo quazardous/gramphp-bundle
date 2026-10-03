@@ -1,0 +1,25 @@
+{
+  "document": {
+    "dsl": "grampy/1",
+    "namespace": "test",
+    "name": "onboarding",
+    "version": "1"
+  },
+  "nodes": {
+    "send": {
+      "lease": "1h"
+    },
+    "survey": {
+      "parents": [
+        "send"
+      ],
+      "grace": "1s",
+      "optional": true
+    },
+    "close": {
+      "parents": [
+        "survey"
+      ]
+    }
+  }
+}

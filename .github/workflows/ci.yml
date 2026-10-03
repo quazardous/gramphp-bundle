@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: pdo_mysql
+          coverage: none
+      - run: composer validate --strict
+      - run: composer update --no-interaction --no-progress
+      - run: vendor/bin/phpstan analyse --memory-limit=1G --no-progress
+      - run: vendor/bin/php-cs-fixer fix --dry-run --diff
+      - run: composer audit
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: "8.2"
+            deps: lowest      # Symfony 6.4, DoctrineBundle 2, DBAL 4.0, ORM 3.0
+          - php: "8.3"
+            deps: highest
+          - php: "8.4"
+            deps: highest     # Symfony 8, DoctrineBundle 3
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: gramphp
+          MARIADB_DATABASE: gramphp
+          MARIADB_USER: gramphp
+          MARIADB_PASSWORD: gramphp
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=2s --health-timeout=5s --health-retries=30
+    env:
+      GRAMPHP_TEST_MARIADB_DSN: "mysql:host=127.0.0.1;port=3306;dbname=gramphp;charset=utf8mb4"
+      GRAMPHP_TEST_MARIADB_USER: gramphp
+      GRAMPHP_TEST_MARIADB_PASSWORD: gramphp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: pdo_mysql
+          coverage: none
+      - run: composer update --no-interaction --no-progress ${{ matrix.deps == 'lowest' && '--prefer-lowest --prefer-stable' || '' }}
+      - run: vendor/bin/phpunit

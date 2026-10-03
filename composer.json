@@ -1,0 +1,66 @@
+{
+    "name": "quazardous/gramphp-bundle",
+    "description": "Symfony integration for gramphp: graphs declared in configuration as journal services over the Doctrine connection, the tables in the Doctrine schema, janitor and drawing commands.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": [
+        "symfony",
+        "bundle",
+        "workflow",
+        "dag",
+        "queue",
+        "gramphp"
+    ],
+    "homepage": "https://github.com/quazardous/gramphp-bundle",
+    "authors": [
+        {
+            "name": "David Berlioz",
+            "homepage": "https://github.com/quazardous"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "doctrine/dbal": "^4.0",
+        "doctrine/doctrine-bundle": "^2.11 || ^3.0",
+        "quazardous/gramphp": "^0.1",
+        "symfony/config": "^6.4 || ^7.0 || ^8.0",
+        "symfony/console": "^6.4 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
+        "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^6.4 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "doctrine/orm": "^3.0",
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^11.4"
+    },
+    "suggest": {
+        "doctrine/orm": "so that the gramphp tables join the ORM schema: doctrine:schema:update and doctrine:migrations:diff see them"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/quazardous/gramphp",
+            "no-api": true
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Quazardous\\GramPHPBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Quazardous\\GramPHPBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "conflict": {
+        "symfony/doctrine-bridge": "<6.4.0"
+    }
+}
